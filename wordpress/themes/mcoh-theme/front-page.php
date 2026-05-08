@@ -2,53 +2,36 @@
 
 <main id="primary" class="site-main">
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
+<?php get_template_part('template-parts/hero/hero-home'); ?>
 
-  <div class="hero-content">
-    <div class="hero-eyebrow">Central Oregon Lifestyle Guide</div>
+<?php get_template_part('template-parts/home/latest-intel'); ?>
 
-    <h1 class="hero-headline">
-      Explore the high desert life.
-    </h1>
+<?php get_template_part('template-parts/explore/explore-grid'); ?>
 
-    <p class="hero-sub">
-      Local insight, destinations, events, trails, restaurants, breweries, and community guides from across Central Oregon.
+<?php get_template_part('template-parts/home/latest-destinations'); ?>
+
+<?php get_template_part('template-parts/home/latest-communities'); ?>
+
+<section class="section-explore">
+  <div class="section-inner">
+    <span class="section-tag">Moving to Central Oregon</span>
+
+    <h2 class="section-title">
+      Thinking about making the move?
+    </h2>
+
+    <p class="card-text">
+      Explore community guides, local insights, neighborhoods, and relocation resources throughout Bend and Central Oregon.
     </p>
 
     <div class="hero-actions">
-      <a class="btn-primary" href="/explore">Start Exploring</a>
-      <a class="btn-ghost" href="/communities">View Communities</a>
-    </div>
-  </div>
-</section>
+      <a class="btn-primary" href="https://centralorproperties.com">
+        Search Homes
+      </a>
 
-<section class="section-intel">
-  <div class="section-inner">
-    <span class="section-tag">Local Intel</span>
-    <h2 class="section-title">What is happening around Central Oregon right now.</h2>
-
-    <div class="intel-grid">
-      <article class="intel-card">
-        <h3 class="intel-card-headline">Weekend Events</h3>
-        <p class="intel-card-text">Concerts, markets, brewery events, and happenings across the region.</p>
-      </article>
-
-      <article class="intel-card">
-        <h3 class="intel-card-headline">Trail Conditions</h3>
-        <p class="intel-card-text">Weather, smoke, hiking, and seasonal recreation updates.</p>
-      </article>
-
-      <article class="intel-card">
-        <h3 class="intel-card-headline">Local News</h3>
-        <p class="intel-card-text">Regional stories and updates that matter to locals and visitors.</p>
-      </article>
-
-      <article class="intel-card">
-        <h3 class="intel-card-headline">Explore Bend</h3>
-        <p class="intel-card-text">Coffee shops, restaurants, breweries, and neighborhood favorites.</p>
-      </article>
+      <a class="btn-ghost" href="/moving-to-central-oregon">
+        Relocation Guides
+      </a>
     </div>
   </div>
 </section>
