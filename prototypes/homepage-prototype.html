@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Central Oregon Home — Live the High Desert Life</title>
+  <meta name="description" content="Explore the trails, towns, breweries, events, lakes, restaurants, and mountain lifestyle that make people want to stay longer than they planned.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       RESET + BASE
+    =========================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #1a1a1a;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===========================
+       CSS VARIABLES
+    =========================== */
+    :root {
+      --cobalt: #050E36;
+      --cobalt-mid: #0a1a5c;
+      --cobalt-light: #0d2070;
+      --black: #000000;
+      --white: #ffffff;
+      --gray-50: #fafafa;
+      --gray-100: #f5f5f3;
+      --gray-200: #e8e8e4;
+      --gray-400: #a0a09a;
+      --gray-600: #6b6b65;
+      --gray-800: #2a2a24;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --nav-height: 72px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===========================
+       NAVIGATION
+    =========================== */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .site-nav.scrolled {
+      background: rgba(5, 14, 54, 0.97);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+    .site-nav:not(.scrolled) {
+      background: linear-gradient(to bottom, rgba(5,14,54,0.75) 0%, transparent 100%);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      margin-right: auto;
+    }
+    .nav-logo-primary {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin: 0 40px;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.6);
+      transition: right var(--transition);
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { right: 0; }
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 9px 22px;
+      border-radius: 2px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .nav-cta:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.7);
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      max-height: 1000px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=85');
+      background-size: cover;
+      background-position: center 35%;
+      transform: scale(1.02);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 14, 54, 0.2) 0%,
+        rgba(5, 14, 54, 0.1) 40%,
+        rgba(5, 14, 54, 0.65) 75%,
+        rgba(5, 14, 54, 0.9) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 20px;
+    }
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 820px;
+      margin-bottom: 22px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-bottom: 42px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      background: #fff;
+      padding: 14px 32px;
+      border-radius: 2px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 2px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.9); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 48px;
+      right: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ===========================
+       INTEL BAR (Live Local Feed)
+    =========================== */
+    .intel-bar {
+      background: var(--cobalt);
+      padding: 0;
+      overflow: hidden;
+    }
+    .intel-ticker {
+      display: flex;
+      align-items: center;
+      height: 46px;
+      gap: 0;
+    }
+    .ticker-label {
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.1);
+      padding: 0 22px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ticker-dot {
+      width: 7px;
+      height: 7px;
+      background: #4CAF8A;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+    .ticker-label span {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      animation: tickerScroll 32s linear infinite;
+      white-space: nowrap;
+      padding-left: 40px;
+    }
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: 56px;
+    }
+    .ticker-item-tag {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.08);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .ticker-item-text {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+    }
+
+    /* ===========================
+       INTEL CARDS (Live Local Section)
+    =========================== */
+    .section-intel {
+      background: var(--gray-100);
+      padding: 80px 40px;
+    }
+    .section-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .section-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--cobalt);
+      line-height: 1.15;
+    }
+    .section-title em { font-style: italic; }
+    .section-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      border-bottom: 1px solid var(--cobalt);
+      padding-bottom: 2px;
+      opacity: 0.6;
+      transition: opacity var(--transition);
+    }
+    .section-link:hover { opacity: 1; }
+    .intel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .intel-card {
+      background: #fff;
+      padding: 32px 28px;
+      border-top: 3px solid transparent;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .intel-card:hover {
+      border-top-color: var(--cobalt);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(5,14,54,0.1);
+      z-index: 1;
+      position: relative;
+    }
+    .intel-card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gray-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    .intel-card-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 10px;
+    }
+    .intel-card-headline {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--cobalt);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .intel-card-text {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .intel-card-meta {
+      font-size: 0.7rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+    .status-good { color: #4CAF8A; font-weight: 600; }
+    .status-warn { color: #E8A628; font-weight: 600; }
+
+    /* ===========================
+       EXPLORE GRID
+    =========================== */
+    .section-explore {
+      padding: 100px 40px;
+      background: #fff;
+    }
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+      margin-top: 56px;
+    }
+    .explore-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      cursor: pointer;
+      aspect-ratio: 4/5;
+    }
+    .explore-card.wide { grid-column: span 2; aspect-ratio: auto; }
+    .explore-card.tall { grid-row: span 2; aspect-ratio: auto; }
+    .explore-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+    .explore-card:hover .explore-card-bg { transform: scale(1.05); }
+    .explore-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,14,54,0.85) 0%, rgba(5,14,54,0.2) 50%, transparent 100%);
+      transition: opacity var(--transition);
+    }
+    .explore-card:hover .explore-card-overlay { opacity: 0.9; }
+    .explore-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 18px;
+    }
+    .explore-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .explore-card-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .explore-card-count {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    /* Explore card gradient backgrounds */
+    .ec-breweries { background: linear-gradient(135deg, #1a3a6e 0%, #0d2456 100%); }
+    .ec-restaurants { background: linear-gradient(135deg, #2c1a0e 0%, #1a0e05 100%); }
+    .ec-hiking { background: linear-gradient(135deg, #0e2e18 0%, #071a0e 100%); }
+    .ec-family { background: linear-gradient(135deg, #1a2e4a 0%, #0d1f3a 100%); }
+    .ec-dogs { background: linear-gradient(135deg, #2a2a1a 0%, #1a1a0d 100%); }
+    .ec-coffee { background: linear-gradient(135deg, #2e1a0a 0%, #1e1005 100%); }
+    .ec-lakes { background: linear-gradient(135deg, #0a2838 0%, #061520 100%); }
+    .ec-winter { background: linear-gradient(135deg, #1a2440 0%, #0d1628 100%); }
+    .ec-skiing { background: linear-gradient(135deg, #0a1e3a 0%, #060f1e 100%); }
+    .ec-drives { background: linear-gradient(135deg, #1e2e10 0%, #101808 100%); }
+    .ec-getaways { background: linear-gradient(135deg, #2a1a3a 0%, #180f22 100%); }
+    .ec-gems { background: linear-gradient(135deg, #3a2a0a 0%, #221805 100%); }
+    .ec-music { background: linear-gradient(135deg, #200a3a 0%, #120520 100%); }
+    .ec-foodtrucks { background: linear-gradient(135deg, #3a1a0a 0%, #220f05 100%); }
+    /* Explore card images */
+    .ec-breweries-img { background-image: url('https://images.unsplash.com/photo-1559818898-7f29e96e5ea9?w=600&q=80'); }
+    .ec-hiking-img { background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80'); }
+    .ec-lakes-img { background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80'); }
+    .ec-skiing-img { background-image: url('https://images.unsplash.com/photo-1544979590-37e9b47eb705?w=600&q=80'); }
+    .ec-restaurants-img { background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80'); }
+    .ec-coffee-img { background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80'); }
+    .ec-family-img { background-image: url('https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=600&q=80'); }
+    .ec-gems-img { background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80'); }
+
+    /* ===========================
+       DESTINATIONS
+    =========================== */
+    .section-destinations {
+      padding: 100px 0;
+      background: var(--cobalt);
+      overflow: hidden;
+    }
+    .section-destinations .section-tag { color: rgba(255,255,255,0.5); }
+    .section-destinations .section-title { color: #fff; }
+    .section-destinations .section-link { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.3); }
+    .section-destinations .section-link:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.8); }
+    .section-destinations .section-inner { padding: 0 40px; }
+    .dest-scroll {
+      display: flex;
+      gap: 3px;
+      margin-top: 52px;
+      overflow-x: auto;
+      padding: 0 40px 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .dest-scroll::-webkit-scrollbar { display: none; }
+    .dest-card {
+      flex-shrink: 0;
+      position: relative;
+      width: 340px;
+      height: 500px;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .dest-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .dest-card:hover .dest-card-bg { transform: scale(1.06); }
+    .dest-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,14,54,0.92) 0%, rgba(5,14,54,0.3) 50%, transparent 100%);
+    }
+    .dest-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px 28px;
+    }
+    .dest-card-region {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    .dest-card-title {
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .dest-card-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .dest-card:hover .dest-card-desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dest-card-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dest-card-cta::after {
+      content: '→';
+      transition: transform var(--transition);
+    }
+    .dest-card:hover .dest-card-cta::after { transform: translateX(4px); }
+    /* Destination backgrounds */
+    .db-smith { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85'); background-position: center 40%; }
+    .db-bachelor { background-image: url('https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=700&q=85'); }
+    .db-oldmill { background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=85'); }
+    .db-cascades { background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=85'); }
+    .db-sisters { background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=700&q=85'); }
+    .db-tumalo { background-image: url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=700&q=85'); }
+    .db-museum { background-image: url('https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=700&q=85'); }
+
+    /* ===========================
+       LOCAL FAVORITES
+    =========================== */
+    .section-favorites {
+      padding: 100px 40px;
+      background: #fff;
+    }
+    .favorites-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 56px;
+      align-items: start;
+    }
+    .favorites-image {
+      position: relative;
+    }
+    .favorites-image-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+    .favorites-image-accent {
+      position: absolute;
+      bottom: -32px;
+      right: -32px;
+      width: 52%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 6px solid #fff;
+      box-shadow: 0 20px 60px rgba(5,14,54,0.18);
+    }
+    .favorites-list {
+      padding-top: 20px;
+    }
+    .favorites-intro {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 44px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .fav-item {
+      display: flex;
+      gap: 22px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--gray-200);
+      cursor: pointer;
+      transition: padding-left var(--transition);
+    }
+    .fav-item:hover { padding-left: 8px; }
+    .fav-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gray-200);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+      transition: color var(--transition);
+    }
+    .fav-item:hover .fav-num { color: var(--cobalt); }
+    .fav-body {}
+    .fav-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--cobalt);
+      margin-bottom: 4px;
+    }
+    .fav-desc {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+    .fav-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      background: var(--gray-100);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    /* ===========================
+       COMMUNITIES SECTION
+    =========================== */
+    .section-communities {
+      padding: 100px 40px;
+      background: var(--gray-100);
+    }
+    .communities-intro {
+      max-width: 640px;
+      margin-top: 20px;
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+    .communities-tabs {
+      display: flex;
+      gap: 0;
+      margin-top: 52px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .community-tab {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      padding: 12px 24px;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .community-tab.active {
+      color: var(--cobalt);
+      border-bottom-color: var(--cobalt);
+    }
+    .communities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+    .community-card {
+      background: #fff;
+      padding: 32px 26px;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .community-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 100%;
+      height: 3px;
+      background: var(--cobalt);
+      transition: right 0.4s ease;
+    }
+    .community-card:hover::before { right: 0; }
+    .community-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(5,14,54,0.12);
+      z-index: 1;
+    }
+    .community-card-name {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--cobalt);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .community-card-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 16px;
+    }
+    .community-card-desc {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .community-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .community-tag {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      background: var(--gray-100);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ===========================
+       REAL ESTATE BRIDGE
+    =========================== */
+    .section-re-bridge {
+      position: relative;
+      padding: 120px 40px;
+      overflow: hidden;
+    }
+    .re-bridge-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1518562923516-a2d79a9df45b?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .re-bridge-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(5,14,54,0.92) 0%,
+        rgba(5,14,54,0.82) 100%
+      );
+    }
+    .re-bridge-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .re-bridge-left {}
+    .re-bridge-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 20px;
+    }
+    .re-bridge-headline {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .re-bridge-headline em { font-style: italic; }
+    .re-bridge-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+    .re-bridge-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 32px;
+      border-radius: 2px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .re-bridge-cta:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+    }
+    .re-bridge-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .re-stat {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 22px 26px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 3px;
+      transition: background var(--transition);
+      cursor: default;
+    }
+    .re-stat:hover { background: rgba(255,255,255,0.08); }
+    .re-stat-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      min-width: 80px;
+    }
+    .re-stat-body {}
+    .re-stat-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2px;
+    }
+    .re-stat-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ===========================
+       NEWSLETTER STRIP
+    =========================== */
+    .section-newsletter {
+      background: var(--gray-800);
+      padding: 72px 40px;
+    }
+    .newsletter-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+    .newsletter-headline {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .newsletter-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      min-width: 420px;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 14px 20px;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-right: none;
+      border-radius: 2px 0 0 2px;
+      outline: none;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
+    .newsletter-input:focus {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .newsletter-btn {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+      background: #fff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+      transition: background var(--transition);
+      white-space: nowrap;
+    }
+    .newsletter-btn:hover { background: rgba(255,255,255,0.9); }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .site-footer {
+      background: var(--cobalt);
+      padding: 80px 40px 40px;
+    }
+    .footer-top {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .footer-logo-sub {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 22px;
+    }
+    .footer-tagline {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      max-width: 260px;
+      margin-bottom: 28px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 14px;
+    }
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      transition: background var(--transition), color var(--transition);
+      cursor: pointer;
+    }
+    .social-icon:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .footer-col-title {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.28);
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 28px;
+    }
+    .footer-bottom-links a {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.28);
+      transition: color var(--transition);
+    }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-re-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.28);
+    }
+    .footer-re-link a {
+      color: rgba(255,255,255,0.45);
+      transition: color var(--transition);
+    }
+    .footer-re-link a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ===========================
+       SCROLL ANIMATIONS
+    =========================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ===========================
+       SECTION DIVIDER
+    =========================== */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.25;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       NAVIGATION
+  ========================= -->
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="nav-logo-primary">Make Central Oregon Home</span>
+        <span class="nav-logo-sub">Central Oregon's Guide</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/explore">Explore</a></li>
+        <li><a href="/destinations">Destinations</a></li>
+        <li><a href="/communities">Communities</a></li>
+        <li><a href="/events">What's On</a></li>
+        <li><a href="/local-intel">Local Intel</a></li>
+      </ul>
+      <a href="/visit-central-oregon" class="nav-cta">Plan Your Visit</a>
+    </div>
+  </nav>
+
+
+  <!-- ========================
+       HERO
+  ========================= -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Central Oregon, Oregon</p>
+      <h1 class="hero-headline">Life moves <em>differently</em><br>in Central Oregon.</h1>
+      <p class="hero-sub">Explore the trails, towns, breweries, events, lakes, restaurants, and mountain lifestyle that make people want to stay longer than they planned.</p>
+      <div class="hero-actions">
+        <a href="/explore" class="btn-primary">Explore Central Oregon</a>
+        <a href="/events" class="btn-ghost">Things To Do This Week</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       LIVE LOCAL INTEL TICKER
+  ========================= -->
+  <div class="intel-bar">
+    <div class="intel-ticker">
+      <div class="ticker-label">
+        <div class="ticker-dot"></div>
+        <span>Live Intel</span>
+      </div>
+      <div class="ticker-track" id="tickerTrack">
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Events</span>
+          <span class="ticker-item-text">Bend Summer Festival — Drake Park, July 18–20</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Weather</span>
+          <span class="ticker-item-text">Bend: 74°F and sunny this weekend — perfect trail conditions</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Mt Bachelor</span>
+          <span class="ticker-item-text">Summer lift ops running — scenic rides Fri–Sun through September</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Brewery</span>
+          <span class="ticker-item-text">Deschutes Brewery: Live music on the patio every Thursday</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Trails</span>
+          <span class="ticker-item-text">Smith Rock: All trails open — no fire restrictions currently</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">News</span>
+          <span class="ticker-item-text">New food truck pod opening in Redmond this month — Source Weekly</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Air Quality</span>
+          <span class="ticker-item-text">AQI: 22 — Excellent visibility across the high desert today</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Warm Springs</span>
+          <span class="ticker-item-text">Kah-Nee-Ta Resort: Cultural programming and summer events — 1 hour north of Bend on the Warm Springs Reservation</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Casino &amp; Events</span>
+          <span class="ticker-item-text">Indian Head Casino: Live entertainment this weekend — Warm Springs, OR</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Prineville</span>
+          <span class="ticker-item-text">Ochoco National Forest trails open — Prineville Reservoir campsites filling fast this summer</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">La Pine</span>
+          <span class="ticker-item-text">Newberry National Volcanic Monument: Paulina Peak and East Lake open — wildflowers at peak</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Madras</span>
+          <span class="ticker-item-text">Lake Billy Chinook: Full pool, boating and fishing conditions excellent — Jefferson County</span>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Events</span>
+          <span class="ticker-item-text">Bend Summer Festival — Drake Park, July 18–20</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Weather</span>
+          <span class="ticker-item-text">Bend: 74°F and sunny this weekend — perfect trail conditions</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Mt Bachelor</span>
+          <span class="ticker-item-text">Summer lift ops running — scenic rides Fri–Sun through September</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Brewery</span>
+          <span class="ticker-item-text">Deschutes Brewery: Live music on the patio every Thursday</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Trails</span>
+          <span class="ticker-item-text">Smith Rock: All trails open — no fire restrictions currently</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">News</span>
+          <span class="ticker-item-text">New food truck pod opening in Redmond this month — Source Weekly</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Air Quality</span>
+          <span class="ticker-item-text">AQI: 22 — Excellent visibility across the high desert today</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Warm Springs</span>
+          <span class="ticker-item-text">Kah-Nee-Ta Resort: Cultural programming and summer events — 1 hour north of Bend on the Warm Springs Reservation</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Casino &amp; Events</span>
+          <span class="ticker-item-text">Indian Head Casino: Live entertainment this weekend — Warm Springs, OR</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Prineville</span>
+          <span class="ticker-item-text">Ochoco National Forest trails open — Prineville Reservoir campsites filling fast this summer</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">La Pine</span>
+          <span class="ticker-item-text">Newberry National Volcanic Monument: Paulina Peak and East Lake open — wildflowers at peak</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-item-tag">Madras</span>
+          <span class="ticker-item-text">Lake Billy Chinook: Full pool, boating and fishing conditions excellent — Jefferson County</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================
+       LIVE LOCAL INTEL CARDS
+  ========================= -->
+  <section class="section-intel">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div>
+          <span class="section-tag">Live from Central Oregon</span>
+          <h2 class="section-title">What's happening <em>right now</em></h2>
+        </div>
+        <a href="/local-intel" class="section-link">See all intel</a>
+      </div>
+      <div class="intel-grid">
+        <div class="intel-card fade-in fade-in-delay-1">
+          <div class="intel-card-icon">🎵</div>
+          <div class="intel-card-label">This Weekend</div>
+          <div class="intel-card-headline">Summer Concerts at Hayden Homes Amphitheater</div>
+          <div class="intel-card-text">Three shows this weekend — two sold out, Saturday still has tickets. Parking tips: arrive before 5pm or park on 3rd and walk in.</div>
+          <div class="intel-card-meta">Via Hayden Homes Amphitheater · Updated 2h ago</div>
+        </div>
+        <div class="intel-card fade-in fade-in-delay-2">
+          <div class="intel-card-icon">🌤</div>
+          <div class="intel-card-label">Weather + Conditions</div>
+          <div class="intel-card-headline">High desert perfect this weekend</div>
+          <div class="intel-card-text">
+            <span class="status-good">74°F Saturday · 71°F Sunday</span><br>
+            Low humidity, no smoke. AQI at 18 — among the clearest days of summer. Trails are dry and fast.
+          </div>
+          <div class="intel-card-meta">NWS Pendleton · No fire restrictions</div>
+        </div>
+        <div class="intel-card fade-in fade-in-delay-3">
+          <div class="intel-card-icon">🍺</div>
+          <div class="intel-card-label">Brewery Scene</div>
+          <div class="intel-card-headline">Crux is pouring their seasonal Tough Love this week</div>
+          <div class="intel-card-text">The patio at Crux Fermentation Project is as good as outdoor drinking gets in Oregon. Fire pits come out after sunset. Dogs welcome in the beer garden.</div>
+          <div class="intel-card-meta">Source Weekly · Bend Buzz</div>
+        </div>
+        <div class="intel-card fade-in fade-in-delay-4">
+          <div class="intel-card-icon">⛰</div>
+          <div class="intel-card-label">Trail Conditions</div>
+          <div class="intel-card-headline">Smith Rock: No restrictions, all trails open</div>
+          <div class="intel-card-text">
+            <span class="status-good">All clear</span> — Misery Ridge and River Trail fully open. Morning starts before 8am to beat the crowds and midday heat. Bring water.
+          </div>
+          <div class="intel-card-meta">Oregon State Parks · Updated this morning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       EXPLORE CENTRAL OREGON
+  ========================= -->
+  <section class="section-explore">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div>
+          <span class="section-tag">Discover</span>
+          <h2 class="section-title">Explore <em>everything</em><br>Central Oregon has to offer</h2>
+        </div>
+        <a href="/explore" class="section-link">Browse all categories</a>
+      </div>
+      <div class="explore-grid">
+        <!-- Row 1 -->
+        <div class="explore-card tall" style="grid-row: span 2;">
+          <div class="explore-card-bg ec-breweries-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🍺</span>
+            <div class="explore-card-title">Breweries &amp; Tap Houses</div>
+            <div class="explore-card-count">30+ local spots</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg ec-restaurants-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🍽</span>
+            <div class="explore-card-title">Best Restaurants</div>
+            <div class="explore-card-count">Top picks by locals</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg ec-coffee-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">☕</span>
+            <div class="explore-card-title">Coffee Shops</div>
+            <div class="explore-card-count">Remote work approved</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg" style="background-image: url('https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80');"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🚚</span>
+            <div class="explore-card-title">Food Trucks</div>
+            <div class="explore-card-count">Pods, parks &amp; lots</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg ec-family-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">👨‍👩‍👧</span>
+            <div class="explore-card-title">Family Activities</div>
+            <div class="explore-card-count">Kids &amp; all ages</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg" style="background-image: url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&q=80');"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🐕</span>
+            <div class="explore-card-title">Dog Friendly</div>
+            <div class="explore-card-count">Trails, patios &amp; parks</div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="explore-card">
+          <div class="explore-card-bg ec-hiking-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🥾</span>
+            <div class="explore-card-title">Hiking &amp; Trails</div>
+            <div class="explore-card-count">200+ routes mapped</div>
+          </div>
+        </div>
+        <div class="explore-card wide">
+          <div class="explore-card-bg ec-lakes-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🏄</span>
+            <div class="explore-card-title">Lakes &amp; Paddleboarding</div>
+            <div class="explore-card-count">High Cascade &amp; Cascade Lakes</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg ec-skiing-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">⛷</span>
+            <div class="explore-card-title">Mt Bachelor &amp; Skiing</div>
+            <div class="explore-card-count">Season intel &amp; guides</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg ec-gems-img"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">💎</span>
+            <div class="explore-card-title">Hidden Gems</div>
+            <div class="explore-card-count">Locals only spots</div>
+          </div>
+        </div>
+        <div class="explore-card">
+          <div class="explore-card-bg" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&q=80');"></div>
+          <div class="explore-card-overlay"></div>
+          <div class="explore-card-content">
+            <span class="explore-card-icon">🚗</span>
+            <div class="explore-card-title">Scenic Drives</div>
+            <div class="explore-card-count">Day trips &amp; byways</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       FEATURED DESTINATIONS
+  ========================= -->
+  <section class="section-destinations">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div>
+          <span class="section-tag">Iconic Places</span>
+          <h2 class="section-title" style="color:#fff;">Central Oregon's <em>most</em><br>remarkable places</h2>
+        </div>
+        <a href="/destinations" class="section-link">All destinations</a>
+      </div>
+    </div>
+    <div class="dest-scroll fade-in">
+      <div class="dest-card">
+        <div class="dest-card-bg db-smith"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Terrebonne · 30 min from Bend</div>
+          <div class="dest-card-title">Smith Rock State Park</div>
+          <div class="dest-card-desc">Oregon's crown jewel. Vertical basalt columns, the Crooked River, world-class climbing, and the kind of views that make people reconsider where they live.</div>
+          <div class="dest-card-cta">Explore Smith Rock</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg db-bachelor"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Deschutes National Forest</div>
+          <div class="dest-card-title">Mt Bachelor</div>
+          <div class="dest-card-desc">3,365 acres of terrain. Year-round access. Summit views that stretch to the Willamette Valley. In summer, the mountain transforms — lift rides, mountain biking, wildflowers.</div>
+          <div class="dest-card-cta">Plan your visit</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg db-cascades"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Deschutes County</div>
+          <div class="dest-card-title">Cascade Lakes Highway</div>
+          <div class="dest-card-desc">Oregon's most scenic drive. 66 miles of volcanic peaks, alpine lakes, lava flows, and the kind of sky that reminds you how big the world really is.</div>
+          <div class="dest-card-cta">Drive the route</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg db-sisters"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Sisters, Oregon</div>
+          <div class="dest-card-title">The Town of Sisters</div>
+          <div class="dest-card-desc">Old West storefronts backed by three Cascade peaks. Sisters Quilt Show draws thousands. The folk festival fills the meadows. Small town done exactly right.</div>
+          <div class="dest-card-cta">Explore Sisters</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg db-tumalo"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Tumalo State Park</div>
+          <div class="dest-card-title">Tumalo Falls</div>
+          <div class="dest-card-desc">A 97-foot waterfall tucked into the Cascade foothills. Three miles from town, but it feels like another world. Perfect for a summer morning before the crowds hit.</div>
+          <div class="dest-card-cta">See the falls</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg db-museum"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Bend, Oregon</div>
+          <div class="dest-card-title">High Desert Museum</div>
+          <div class="dest-card-desc">Not a dusty natural history museum. Living raptors, river otters, and rotating exhibitions that genuinely make you understand why this landscape is irreplaceable.</div>
+          <div class="dest-card-cta">Discover the museum</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1580922561455-2d4a2d81b7e1?w=700&q=85');"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Downtown Bend</div>
+          <div class="dest-card-title">Old Mill District</div>
+          <div class="dest-card-desc">Boutique shops, river access, concerts at Les Schwab Amphitheater, and the best people-watching in Bend. Former sawmill site turned into something the original owners couldn't have imagined.</div>
+          <div class="dest-card-cta">Visit the Old Mill</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=85'); background-position: center 60%;"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Warm Springs Reservation · 1 hr north</div>
+          <div class="dest-card-title">Kah-Nee-Ta &amp; Warm Springs</div>
+          <div class="dest-card-desc">Resort, hot springs, and cultural destination on the Warm Springs Reservation. One of the only high-desert hot spring resorts in the Pacific Northwest — and one of the most undervisited destinations in Central Oregon.</div>
+          <div class="dest-card-cta">Explore Kah-Nee-Ta</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=85'); background-position: center 40%;"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Crook County · 45 min east</div>
+          <div class="dest-card-title">Ochoco National Forest</div>
+          <div class="dest-card-desc">Ponderosa pines, wildflower meadows, thunderegg hunting, and trails that never get crowded. Prineville's backyard is one of the best-kept secrets in Oregon — and local guides know every mile of it.</div>
+          <div class="dest-card-cta">Discover the Ochocos</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=700&q=85'); background-position: center 50%;"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Jefferson County · 45 min north</div>
+          <div class="dest-card-title">Lake Billy Chinook</div>
+          <div class="dest-card-desc">A reservoir carved between canyon walls where three rivers meet — the Deschutes, Crooked, and Metolius. Houseboating, fishing, cliff jumping, and the kind of hot-summer day that's impossible to repeat anywhere else in Oregon.</div>
+          <div class="dest-card-cta">Plan your lake day</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=700&q=85'); background-position: center 40%;"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <div class="dest-card-region">Deschutes County · 30 min south</div>
+          <div class="dest-card-title">Newberry National Volcanic Monument</div>
+          <div class="dest-card-desc">Obsidian flows, Paulina Lake, East Lake hot springs, and the summit of Paulina Peak — 7,984 feet of volcano with views that stretch to Mt Hood. La Pine's front yard. Most people don't know it exists.</div>
+          <div class="dest-card-cta">Explore Newberry</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       LOCAL FAVORITES
+  ========================= -->
+  <section class="section-favorites">
+    <div class="section-inner">
+      <div class="favorites-layout">
+        <div class="favorites-image fade-in">
+          <img
+            class="favorites-image-main"
+            src="https://images.unsplash.com/photo-1559818898-7f29e96e5ea9?w=800&q=85"
+            alt="Bend brewery patio with mountain view"
+            loading="lazy"
+          >
+          <img
+            class="favorites-image-accent"
+            src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=85"
+            alt="Hiking in Central Oregon"
+            loading="lazy"
+          >
+        </div>
+        <div class="favorites-list fade-in fade-in-delay-2">
+          <span class="section-tag">Insider Picks</span>
+          <h2 class="section-title" style="margin-bottom: 16px;">What the <em>locals</em><br>actually love</h2>
+          <div class="divider" style="color: var(--cobalt);"></div>
+          <p class="favorites-intro">This isn't a list pulled from Yelp or a travel blog written by someone passing through. These are the spots that people who live here keep coming back to.</p>
+          <div class="fav-item">
+            <div class="fav-num">01</div>
+            <div class="fav-body">
+              <div class="fav-title">Crux Fermentation Project at sunset</div>
+              <div class="fav-desc">The patio faces west. Order the Tough Love IPA, wait for the light to hit the Cascades, and try not to start looking at real estate listings.</div>
+              <span class="fav-tag">Brewery</span>
+            </div>
+          </div>
+          <div class="fav-item">
+            <div class="fav-num">02</div>
+            <div class="fav-body">
+              <div class="fav-title">Smith Rock via Misery Ridge at first light</div>
+              <div class="fav-desc">Arrive at 6:30am. The parking lot is empty, the light is orange, and the wall of rock coming out of the fog makes you understand why photographers drive here from three states away.</div>
+              <span class="fav-tag">Trails</span>
+            </div>
+          </div>
+          <div class="fav-item">
+            <div class="fav-num">03</div>
+            <div class="fav-body">
+              <div class="fav-title">Sparks Lake at any time of year</div>
+              <div class="fav-desc">Summer: kayaks, wildflowers, South Sister reflection. Winter: snowshoe access, complete silence, and the feeling that you've found something most people miss entirely.</div>
+              <span class="fav-tag">Lakes</span>
+            </div>
+          </div>
+          <div class="fav-item">
+            <div class="fav-num">04</div>
+            <div class="fav-body">
+              <div class="fav-title">Drake Park on a Thursday farmers market day</div>
+              <div class="fav-desc">Local vendors, Mirror Pond, coffee from one of three roasters, and the most pleasant version of Bend's community vibe compressed into two hours.</div>
+              <span class="fav-tag">Community</span>
+            </div>
+          </div>
+          <a href="/local-favorites" class="section-link" style="display:inline-block; margin-top: 32px;">See all local favorites</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       COMMUNITIES
+  ========================= -->
+  <section class="section-communities">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div>
+          <span class="section-tag">Where You'll Live</span>
+          <h2 class="section-title">Every community has<br>its own <em>personality</em></h2>
+        </div>
+        <a href="/communities" class="section-link">Full community guides</a>
+      </div>
+      <p class="communities-intro fade-in">Central Oregon isn't just Bend. The region spans dozens of distinct neighborhoods and towns, each with a different pace, price point, and lifestyle. Start here.</p>
+      <div class="communities-tabs fade-in" id="communityTabs">
+        <div class="community-tab active" data-tab="bend">Bend Neighborhoods</div>
+        <div class="community-tab" data-tab="greater-bend">Greater Bend Area</div>
+        <div class="community-tab" data-tab="mountain">Mountain &amp; Resort Towns</div>
+        <div class="community-tab" data-tab="high-desert">High Desert &amp; Regional</div>
+      </div>
+
+      <!-- TAB 1: Bend Neighborhoods -->
+      <div class="communities-grid community-panel" data-panel="bend">
+        <div class="community-card">
+          <div class="community-card-name">Northwest Crossing</div>
+          <div class="community-card-type">Bend · Northwest</div>
+          <div class="community-card-desc">Walkable grid streets, a neighborhood market, and strong community identity. Families, trail access, and the kind of neighborhood where people actually know each other.</div>
+          <div class="community-tags">
+            <span class="community-tag">Walkable</span>
+            <span class="community-tag">Families</span>
+            <span class="community-tag">Trail access</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Old Farm District</div>
+          <div class="community-card-type">Bend · Southeast</div>
+          <div class="community-card-desc">Newer construction, larger lots, and quiet streets. Close to the Badlands Wilderness. Popular with families who want space without leaving Bend's city limits.</div>
+          <div class="community-tags">
+            <span class="community-tag">New builds</span>
+            <span class="community-tag">Spacious</span>
+            <span class="community-tag">Quiet</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Awbrey Butte</div>
+          <div class="community-card-type">Bend · Northwest</div>
+          <div class="community-card-desc">Elevated, panoramic, established. Views of the Cascades and Bend below. Mature trees, custom homes, and direct access to the Deschutes River Trail system.</div>
+          <div class="community-tags">
+            <span class="community-tag">Views</span>
+            <span class="community-tag">Custom homes</span>
+            <span class="community-tag">Established</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Midtown Bend</div>
+          <div class="community-card-type">Bend · Central</div>
+          <div class="community-card-desc">Walkable to breweries, restaurants, and the river. Mix of remodeled bungalows and newer infill. The most urban Bend gets — which is still very Oregon.</div>
+          <div class="community-tags">
+            <span class="community-tag">Urban</span>
+            <span class="community-tag">Walkable</span>
+            <span class="community-tag">Restaurants</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">River West</div>
+          <div class="community-card-type">Bend · West Side</div>
+          <div class="community-card-desc">Established west-side Bend neighborhoods along the Deschutes corridor. Mix of mid-century homes and newer builds. Strong rental demand and central location.</div>
+          <div class="community-tags">
+            <span class="community-tag">River access</span>
+            <span class="community-tag">Central</span>
+            <span class="community-tag">Established</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Southeast Bend</div>
+          <div class="community-card-type">Bend · Southeast</div>
+          <div class="community-card-desc">One of Bend's fastest-growing quadrants. Newer neighborhoods, competitive entry prices relative to the west side, and easy access to the Badlands and east desert trails.</div>
+          <div class="community-tags">
+            <span class="community-tag">Growing</span>
+            <span class="community-tag">Value</span>
+            <span class="community-tag">New builds</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Mountain View</div>
+          <div class="community-card-type">Bend · East Side</div>
+          <div class="community-card-desc">The most commuter-accessible part of Bend. Established neighborhoods, lower price points than the west side, and a straight shot to Highway 20 and redmond.</div>
+          <div class="community-tags">
+            <span class="community-tag">Accessible</span>
+            <span class="community-tag">Value</span>
+            <span class="community-tag">Established</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Tetherow</div>
+          <div class="community-card-type">Bend · Southwest</div>
+          <div class="community-card-desc">Resort community built around a David McLay Kidd golf course. Custom homes, Cascade views, and a community lodge. Southwest Bend's premium address.</div>
+          <div class="community-tags">
+            <span class="community-tag">Resort</span>
+            <span class="community-tag">Golf</span>
+            <span class="community-tag">Premium</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Greater Bend Area -->
+      <div class="communities-grid community-panel" data-panel="greater-bend" style="display:none;">
+        <div class="community-card">
+          <div class="community-card-name">Redmond</div>
+          <div class="community-card-type">City · 15 min north of Bend</div>
+          <div class="community-card-desc">Bend's fastest-growing neighbor. Lower prices, more land, and a downtown that's genuinely finding its stride. Roberts Field Airport access, industrial base, and a community identity that's entirely its own.</div>
+          <div class="community-tags">
+            <span class="community-tag">Value</span>
+            <span class="community-tag">Growth</span>
+            <span class="community-tag">Airport</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Tumalo</div>
+          <div class="community-card-type">Unincorporated · 10 min NW of Bend</div>
+          <div class="community-card-desc">Rural feel, Deschutes River access, and larger parcels with an easy commute to Bend. Agricultural roots with modern homestead energy. Acreage buyers come here first.</div>
+          <div class="community-tags">
+            <span class="community-tag">Rural</span>
+            <span class="community-tag">Acreage</span>
+            <span class="community-tag">River access</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Terrebonne</div>
+          <div class="community-card-type">Unincorporated · 20 min north of Bend</div>
+          <div class="community-card-desc">Gateway community to Smith Rock State Park. Small-town character, agricultural land, and one of the most dramatic backyards in the state. Housing is still affordable here.</div>
+          <div class="community-tags">
+            <span class="community-tag">Smith Rock</span>
+            <span class="community-tag">Small town</span>
+            <span class="community-tag">Affordable</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Powell Butte</div>
+          <div class="community-card-type">Unincorporated · 20 min SE of Redmond</div>
+          <div class="community-card-desc">Rural high desert community between Redmond and Prineville. Large parcels, sweeping open sky, and the kind of space that's genuinely hard to find closer to Bend. Agricultural community character.</div>
+          <div class="community-tags">
+            <span class="community-tag">Very rural</span>
+            <span class="community-tag">Farmland</span>
+            <span class="community-tag">Space</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Alfalfa</div>
+          <div class="community-card-type">Unincorporated · East of Bend</div>
+          <div class="community-card-desc">Remote high desert community on Bend's eastern fringe. Large ranchland parcels, Badlands Wilderness adjacency, and the clearest night skies in Deschutes County.</div>
+          <div class="community-tags">
+            <span class="community-tag">Remote</span>
+            <span class="community-tag">Ranchland</span>
+            <span class="community-tag">Dark skies</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Mountain & Resort Towns -->
+      <div class="communities-grid community-panel" data-panel="mountain" style="display:none;">
+        <div class="community-card">
+          <div class="community-card-name">Sisters</div>
+          <div class="community-card-type">City · 25 min west of Bend</div>
+          <div class="community-card-desc">Three Fingered Jack, North Sister, South Sister — all visible from main street. Boutique town character, mountain access, arts culture, and a summer event calendar that draws crowds from across the state.</div>
+          <div class="community-tags">
+            <span class="community-tag">Mountain views</span>
+            <span class="community-tag">Arts</span>
+            <span class="community-tag">Charming</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Sunriver</div>
+          <div class="community-card-type">Resort Community · 15 min south of Bend</div>
+          <div class="community-card-desc">Purpose-built resort community with 35 miles of paved paths, its own nature center, pools, and a lodge. Strong vacation rental income. A market that performs year-round regardless of conditions elsewhere.</div>
+          <div class="community-tags">
+            <span class="community-tag">Resort</span>
+            <span class="community-tag">Vacation rental</span>
+            <span class="community-tag">Family</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">La Pine</div>
+          <div class="community-card-type">City · 30 min south of Bend</div>
+          <div class="community-card-desc">Oregon's newest city. Larger lots, lower prices, and the Newberry National Volcanic Monument as a backyard. Deschutes River frontage, Paulina Lake day trips, and a community growing into itself.</div>
+          <div class="community-tags">
+            <span class="community-tag">Affordable</span>
+            <span class="community-tag">Large lots</span>
+            <span class="community-tag">Newberry</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Camp Sherman</div>
+          <div class="community-card-type">Unincorporated · 45 min NW of Bend</div>
+          <div class="community-card-desc">A handful of cabins, a general store, and the spring-fed Metolius River — one of the most pristine rivers in the Pacific Northwest. Fly fishing country. Remote, intentional, and genuinely special.</div>
+          <div class="community-tags">
+            <span class="community-tag">Remote</span>
+            <span class="community-tag">Fly fishing</span>
+            <span class="community-tag">Metolius River</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: High Desert & Regional -->
+      <div class="communities-grid community-panel" data-panel="high-desert" style="display:none;">
+        <div class="community-card">
+          <div class="community-card-name">Prineville</div>
+          <div class="community-card-type">City · 35 min east of Bend · Crook County</div>
+          <div class="community-card-desc">Central Oregon's original pioneer town. Ochoco National Forest, thunderegg capital of the world, Prineville Reservoir, and a tight-knit community with more affordability than anywhere in Deschutes County. Home to major tech data centers and quiet growth.</div>
+          <div class="community-tags">
+            <span class="community-tag">Affordable</span>
+            <span class="community-tag">Ochoco access</span>
+            <span class="community-tag">Growing</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Madras</div>
+          <div class="community-card-type">City · 45 min north of Bend · Jefferson County</div>
+          <div class="community-card-desc">Jefferson County seat and Oregon's solar eclipse capital — twice. Lake Billy Chinook access, Smith Rock within reach, and one of the best views of Mt Jefferson in the state. Agricultural community with real affordability and room to grow.</div>
+          <div class="community-tags">
+            <span class="community-tag">Affordable</span>
+            <span class="community-tag">Lake Billy Chinook</span>
+            <span class="community-tag">Agricultural</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Warm Springs</div>
+          <div class="community-card-type">Tribal Nation · 1 hr north of Bend</div>
+          <div class="community-card-desc">Home of the Confederated Tribes of Warm Springs. Kah-Nee-Ta Resort and Spa, Indian Head Casino, and deep cultural heritage. A significant destination in the regional experience — not just a pass-through on Highway 26.</div>
+          <div class="community-tags">
+            <span class="community-tag">Kah-Nee-Ta</span>
+            <span class="community-tag">Cultural</span>
+            <span class="community-tag">Hot springs</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Culver</div>
+          <div class="community-card-type">City · 30 min north · Jefferson County</div>
+          <div class="community-card-desc">Small agricultural community between Redmond and Madras. Lake Billy Chinook access, sweeping Cascade views, and the kind of quiet that has become genuinely rare in the region.</div>
+          <div class="community-tags">
+            <span class="community-tag">Small town</span>
+            <span class="community-tag">Cascade views</span>
+            <span class="community-tag">Quiet</span>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-card-name">Maupin</div>
+          <div class="community-card-type">City · 1 hr north · Wasco County</div>
+          <div class="community-card-desc">White-water rafting capital of Oregon. The Deschutes River below Pelton Dam is world-class — and Maupin is the staging ground. Tiny town, big recreation identity, and a natural extension of what makes this whole region worth knowing.</div>
+          <div class="community-tags">
+            <span class="community-tag">Rafting</span>
+            <span class="community-tag">Deschutes River</span>
+            <span class="community-tag">Outdoor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       REAL ESTATE BRIDGE
+  ========================= -->
+  <section class="section-re-bridge">
+    <div class="re-bridge-bg"></div>
+    <div class="re-bridge-overlay"></div>
+    <div class="re-bridge-content">
+      <div class="re-bridge-left fade-in">
+        <div class="re-bridge-eyebrow">When You're Ready</div>
+        <h2 class="re-bridge-headline">Some people visit once<br>and never stop <em>thinking</em><br>about Central Oregon.</h2>
+        <p class="re-bridge-text">When the time comes to explore what it would actually mean to live here — or invest here — the search continues at Central Oregon Properties. No pressure. Just the right information when you need it.</p>
+        <a href="https://centralorproperties.com" class="re-bridge-cta" target="_blank">
+          Explore Homes &amp; Communities
+        </a>
+      </div>
+      <div class="re-bridge-right fade-in fade-in-delay-2">
+        <div class="re-stat">
+          <div class="re-stat-num">297</div>
+          <div class="re-stat-body">
+            <div class="re-stat-label">Sunny days per year</div>
+            <div class="re-stat-sub">National average is 205</div>
+          </div>
+        </div>
+        <div class="re-stat">
+          <div class="re-stat-num">6%</div>
+          <div class="re-stat-body">
+            <div class="re-stat-label">Deschutes County population growth</div>
+            <div class="re-stat-sub">Among Oregon's fastest-growing counties</div>
+          </div>
+        </div>
+        <div class="re-stat">
+          <div class="re-stat-num">15 min</div>
+          <div class="re-stat-body">
+            <div class="re-stat-label">Average commute time in Bend</div>
+            <div class="re-stat-sub">US average: 27 minutes</div>
+          </div>
+        </div>
+        <div class="re-stat">
+          <div class="re-stat-num">$0</div>
+          <div class="re-stat-body">
+            <div class="re-stat-label">Oregon state sales tax</div>
+            <div class="re-stat-sub">One less reason to hesitate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       NEWSLETTER
+  ========================= -->
+  <section class="section-newsletter">
+    <div class="newsletter-inner">
+      <div class="fade-in">
+        <h3 class="newsletter-headline">The Central Oregon Weekly</h3>
+        <p class="newsletter-sub">Events, trail conditions, brewery news, hidden spots, and local intel — every Thursday morning.</p>
+      </div>
+      <div class="newsletter-form fade-in fade-in-delay-2">
+        <input type="email" class="newsletter-input" placeholder="Your email address">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       FOOTER
+  ========================= -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Make Central Oregon Home</div>
+        <div class="footer-logo-sub">Central Oregon's Guide</div>
+        <p class="footer-tagline">The most useful guide to understanding life in Central Oregon.</p>
+        <div class="footer-social">
+          <div class="social-icon" title="Instagram">IG</div>
+          <div class="social-icon" title="Facebook">FB</div>
+          <div class="social-icon" title="Pinterest">PT</div>
+          <div class="social-icon" title="YouTube">YT</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="/breweries">Breweries</a></li>
+          <li><a href="/restaurants">Restaurants</a></li>
+          <li><a href="/hiking">Hiking &amp; Trails</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/lakes">Lakes &amp; Water</a></li>
+          <li><a href="/hidden-gems">Hidden Gems</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations</div>
+        <ul class="footer-links">
+          <li><a href="/smith-rock">Smith Rock</a></li>
+          <li><a href="/mt-bachelor">Mt Bachelor</a></li>
+          <li><a href="/cascade-lakes">Cascade Lakes</a></li>
+          <li><a href="/sisters">Sisters</a></li>
+          <li><a href="/sunriver">Sunriver</a></li>
+          <li><a href="/tumalo-falls">Tumalo Falls</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Communities</div>
+        <ul class="footer-links">
+          <li><a href="/nw-crossing">NW Crossing</a></li>
+          <li><a href="/midtown-bend">Midtown Bend</a></li>
+          <li><a href="/redmond">Redmond</a></li>
+          <li><a href="/sisters-community">Sisters</a></li>
+          <li><a href="/sunriver-community">Sunriver</a></li>
+          <li><a href="/all-communities">All Communities</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="/relocation-guide">Relocation Guide</a></li>
+          <li><a href="/moving-to-bend">Moving to Bend</a></li>
+          <li><a href="/seasonal-guides">Seasonal Guides</a></li>
+          <li><a href="/weekend-itineraries">Weekend Guides</a></li>
+          <li><a href="/local-intel">Local Intel</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Make Central Oregon Home. All rights reserved.</div>
+      <div class="footer-re-link">
+        Ready to search homes?
+        <a href="https://centralorproperties.com" target="_blank">Central Oregon Properties →</a>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========================
+       JAVASCRIPT
+  ========================= -->
+  <script>
+    // --- Nav scroll behavior ---
+    const nav = document.getElementById('siteNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // --- Hero image Ken Burns effect on load ---
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('load', () => {
+      setTimeout(() => heroBg.classList.add('loaded'), 100);
+    });
+
+    // --- Scroll fade-in animations ---
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // --- Community tabs ---
+    const tabs = document.querySelectorAll('.community-tab');
+    const panels = document.querySelectorAll('.community-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.dataset.tab;
+        panels.forEach(panel => {
+          if (panel.dataset.panel === target) {
+            panel.style.display = 'grid';
+            panel.querySelectorAll('.community-card').forEach((card, i) => {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(16px)';
+              setTimeout(() => {
+                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, i * 55);
+            });
+          } else {
+            panel.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // --- Destination scroll drag ---
+    const destScroll = document.querySelector('.dest-scroll');
+    let isDown = false, startX, scrollLeft;
+    if (destScroll) {
+      destScroll.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - destScroll.offsetLeft;
+        scrollLeft = destScroll.scrollLeft;
+        destScroll.style.cursor = 'grabbing';
+      });
+      destScroll.addEventListener('mouseleave', () => { isDown = false; destScroll.style.cursor = 'grab'; });
+      destScroll.addEventListener('mouseup', () => { isDown = false; destScroll.style.cursor = 'grab'; });
+      destScroll.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - destScroll.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        destScroll.scrollLeft = scrollLeft - walk;
+      });
+      destScroll.style.cursor = 'grab';
+    }
+
+    // --- Newsletter form ---
+    const newsletterBtn = document.querySelector('.newsletter-btn');
+    const newsletterInput = document.querySelector('.newsletter-input');
+    if (newsletterBtn) {
+      newsletterBtn.addEventListener('click', () => {
+        if (newsletterInput.value && newsletterInput.value.includes('@')) {
+          newsletterBtn.textContent = 'You\'re in';
+          newsletterBtn.style.background = '#4CAF8A';
+          newsletterBtn.style.color = '#fff';
+          newsletterInput.value = '';
+          newsletterInput.placeholder = 'Check your inbox Thursday morning.';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
