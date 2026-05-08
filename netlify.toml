@@ -1,0 +1,7 @@
+[build]
+  publish = "prototypes"
+
+[[redirects]]
+  from = "/"
+  to = "/homepage-prototype.html"
+  status = 200
