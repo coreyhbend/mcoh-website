@@ -1,6 +1,6 @@
 <?php
 /**
- * Fallback template
+ * Generic page template
  */
 get_header(); ?>
 
