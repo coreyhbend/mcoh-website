@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export THEMES_DIR=/home/makecent/public_html/wp-content/themes
+    - /bin/rm -rf "$THEMES_DIR/mcoh-theme"
+    - /bin/cp -R "wordpress/themes/mcoh-theme" "$THEMES_DIR/"
