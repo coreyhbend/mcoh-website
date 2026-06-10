@@ -4,4 +4,6 @@ deployment:
       - export THEMES_DIR=/home/makecent/public_html/wp-content/themes
           - /bin/rm -rf "$THEMES_DIR/mcoh-theme"
               - /bin/cp -R "wordpress/themes/mcoh-theme" "$THEMES_DIR/"
-                  - /bin/cp "prototypes/homepage-prototype.html" "$HOME/public_html/index.html"
+                  - /bin/chmod 644 "$HOME/public_html/index.html" || true
+                      - /bin/cp "prototypes/homepage-prototype.html" "$HOME/public_html/index.html"
+                          - /bin/chmod 444 "$HOME/public_html/index.html"
